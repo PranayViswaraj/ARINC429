@@ -1,0 +1,195 @@
+m255
+K4
+z2
+!s11f vlog 2024.3 2024.09, Sep 10 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/vpran/OneDrive/Desktop/ARINC 429/Phase1/sim
+varinc429_controller
+Z1 2../../arinc429_controller.v|../../arinc429_fault_injector.v|../../arinc429_rx.v|../../arinc429_tx.v|../../tb_arinc429_controller_review1_fix.v|../../tb_arinc429_fault_injection.v|../../tb_arinc429_rx_review1_fix.v|../../tb_arinc429_tx_review1_fix.v
+Z2 !s110 1790069459
+!i10b 1
+!s100 m1::Q0e:_oZJ6c_hmOJe@0
+I:AVLkGJJYU`X9:WXF[2[O1
+R0
+w1789879577
+8../../arinc429_controller.v
+F../../arinc429_controller.v
+!i122 0
+L0 3 82
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OL;L;2024.3;79
+r1
+!s85 0
+31
+Z5 !s108 1790069459.000000
+!s107 ../../tb_arinc429_tx_review1_fix.v|../../tb_arinc429_rx_review1_fix.v|../../tb_arinc429_fault_injection.v|../../tb_arinc429_controller_review1_fix.v|../../arinc429_tx.v|../../arinc429_rx.v|../../arinc429_fault_injector.v|../../arinc429_controller.v|
+Z6 !s90 -vlog01compat|-quiet|../../arinc429_controller.v|../../arinc429_fault_injector.v|../../arinc429_rx.v|../../arinc429_tx.v|../../tb_arinc429_controller_review1_fix.v|../../tb_arinc429_fault_injection.v|../../tb_arinc429_rx_review1_fix.v|../../tb_arinc429_tx_review1_fix.v|
+!i113 0
+Z7 o-quiet -vlog01compat -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z8 tCvgOpt 0
+varinc429_fault_injector
+R1
+R2
+!i10b 1
+!s100 9o`@=ZZBE;2gLT2Q:XBZA2
+I>SMJ=Yl8^`A_ZY>T]ED1X1
+R0
+w1789879584
+8../../arinc429_fault_injector.v
+F../../arinc429_fault_injector.v
+!i122 0
+L0 43 12
+R3
+R4
+r1
+!s85 0
+31
+R5
+Z9 !s107 ../../tb_arinc429_tx_review1_fix.v|../../tb_arinc429_rx_review1_fix.v|../../tb_arinc429_fault_injection.v|../../tb_arinc429_controller_review1_fix.v|../../arinc429_tx.v|../../arinc429_rx.v|../../arinc429_fault_injector.v|../../arinc429_controller.v|
+R6
+!i113 0
+R7
+R8
+varinc429_rx
+R1
+R2
+!i10b 1
+!s100 L3VV6lJ`;cV]dH`3a9@hn0
+IH@CeYOjZ3lXn]Lb]]>fLD0
+R0
+w1789879592
+8../../arinc429_rx.v
+F../../arinc429_rx.v
+!i122 0
+L0 3 164
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+varinc429_tx
+R1
+R2
+!i10b 1
+!s100 jL?IMPn=9jU<[d?]4>0^S0
+IQD4iKSI@00<QKdID7C5bC0
+R0
+w1789879600
+8../../arinc429_tx.v
+F../../arinc429_tx.v
+!i122 0
+L0 3 186
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vtb_arinc429_controller
+R1
+R2
+!i10b 1
+!s100 o>IOOHR6YMfQoYg3SN9kB1
+IbVTH5DR^ogDM1X_QBFNZ`0
+R0
+w1789879610
+8../../tb_arinc429_controller_review1_fix.v
+F../../tb_arinc429_controller_review1_fix.v
+!i122 0
+L0 18 581
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vtb_arinc429_fault_injection
+R1
+R2
+!i10b 1
+!s100 Z[O:BioDiz_o?6YR>EiYY3
+Im;^O>MI28E23kU<K27Pkh1
+R0
+w1789879617
+8../../tb_arinc429_fault_injection.v
+F../../tb_arinc429_fault_injection.v
+!i122 0
+L0 95 1761
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vtb_arinc429_rx
+R1
+R2
+!i10b 1
+!s100 Td^iQ`o4hISOIDCUY;SUg3
+IA?OY8IoE>25F9jAlHi[TY2
+R0
+w1789879565
+8../../tb_arinc429_rx_review1_fix.v
+F../../tb_arinc429_rx_review1_fix.v
+!i122 0
+L0 15 452
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vtb_arinc429_tx
+R1
+R2
+!i10b 1
+!s100 :M>D[gI]2n8gK9RDT;G921
+IDH>Vl`V^b<jB3Zm=GJ1f;3
+R0
+w1789879571
+8../../tb_arinc429_tx_review1_fix.v
+F../../tb_arinc429_tx_review1_fix.v
+!i122 0
+L0 30 454
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
