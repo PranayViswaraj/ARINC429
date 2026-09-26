@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+﻿`timescale 1ns/1ps
 /*=============================================================================
  * tb_arinc429_rx  -  REVIEW-1 REGRESSION COPY (MINIMALLY FIXED)
  *

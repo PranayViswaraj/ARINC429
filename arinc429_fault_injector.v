@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+﻿`timescale 1ns/1ps
 /*==============================================================================
  * FILE   : arinc429_fault_injector.v
  * STATUS : VERIFICATION-ONLY HELPER  --  TESTBENCH ONLY  --  DO NOT SYNTHESIZE

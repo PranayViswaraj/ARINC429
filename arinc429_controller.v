@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+﻿`timescale 1ns/1ps
 
 module arinc429_controller #(
     parameter integer CLK_FREQ_HZ    = 50000000,

@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+﻿`timescale 1ns/1ps
 /*==============================================================================
  * FILE   : tb_arinc429_fault_injection.v   (REVIEW-2 CORRECTED, rev B)
  * STATUS : TESTBENCH ONLY (Phase-1 / Review-2 verification layer)
