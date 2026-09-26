@@ -1,0 +1,29 @@
+﻿# Simulation files
+*.vvp
+*.vcd
+*.o
+*.out
+*.wdb
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python files
+*.pyc
+__pycache__/
+*.pyo
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Archives
+*.zip
