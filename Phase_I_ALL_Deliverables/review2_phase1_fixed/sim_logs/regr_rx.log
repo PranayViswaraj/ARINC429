@@ -1,0 +1,45 @@
+PASS [RESET]
+PASS [NORMAL_1] word=02af3505
+PASS [NORMAL_MAX] word=7fffffff
+PASS [NORMAL_ZERO] word=80000000
+PASS [NORMAL_ALT] word=255555aa
+PASS [FAULT_BIT_0] detected bit 0
+PASS [FAULT_LABEL_LSB] detected bit 7
+PASS [FAULT_SDI_0] detected bit 8
+PASS [FAULT_SDI_1] detected bit 9
+PASS [FAULT_DATA_0] detected bit 10
+PASS [FAULT_DATA_MID] detected bit 15
+PASS [FAULT_DATA_18] detected bit 28
+PASS [FAULT_SSM_0] detected bit 29
+PASS [FAULT_SSM_1] detected bit 30
+PASS [FAULT_PARITY] detected bit 31
+EXPECTED LIMITATION [TWO_BIT_0_1]: two-bit error escaped odd parity.
+PASS [TWO_BIT_0_1]
+EXPECTED LIMITATION [TWO_BIT_10_20]: two-bit error escaped odd parity.
+PASS [TWO_BIT_10_20]
+PASS [BACK_TO_BACK_1] word=80000410
+PASS [BACK_TO_BACK_2] word=80000820
+PASS [RESET_DURING_RX]
+
+============================================================
+ARINC 429 RX VERIFICATION SUMMARY
+============================================================
+Total tests              = 20
+Passed                   = 20
+Failed                   = 0
+Normal tests             = 6
+Normal passed            = 6
+Normal failed            = 0
+Fault tests              = 12
+Single-bit faults        = 9
+Single-bit detected      = 9
+Parity faults            = 1
+Parity detected          = 1
+Two-bit faults            = 2
+Two-bit undetected       = 2
+rx_valid width failures  = 0
+CYCLES_PER_BIT            = 500
+============================================================
+OVERALL RESULT = PASS
+============================================================
+/home/z/my-project/download/review2_phase1_fixed/tb_review1/tb_arinc429_rx_review1_fix.v:457: $finish called at 5880550000 (1ps)

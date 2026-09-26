@@ -1,0 +1,162 @@
+REVIEW-2 / PHASE-1 CORRECTION RECORD
+Project: Health-Aware ARINC 429 Communication Controller
+File corrected: tb_arinc429_fault_injection.v (the ONLY changed file)
+Unchanged (byte-identical to the supplied source of truth):
+  rtl/arinc429_tx.v, rtl/arinc429_rx.v, rtl/arinc429_controller.v
+  tb/arinc429_fault_injector.v
+  tb_review1/tb_arinc429_tx_review1_fix.v
+  tb_review1/tb_arinc429_rx_review1_fix.v
+  tb_review1/tb_arinc429_controller_review1_fix.v
+
+DEFECT -> FIX MAP (defect IDs from the Review-2 audit report)
+
+FI-01  Reset scenarios used `fiu_corrupt = 1'b1 << 12` / `1'b1 << 5` on a
+       1-bit reg (evaluates to 0: no fault ever reached the wire).
+       FIX: corruption now uses the same time-domain per-bit mechanism as
+       the core engine (fiu_corrupt asserted exactly during the target
+       serial bit window) + mid-bit wire proof (FIU_in vs FIU_out).
+FI-02  Repeated-error reset variant issued the 2nd tx_start while tx_busy
+       was high (DUT ignores it: no second transaction existed).
+       FIX: variant 3 runs transaction 1 via the engine (fully verified),
+       waits for tx_busy==0, then starts transaction 2 and proves both
+       [REPEAT-PROOF] lines: "T1 COMPLETED" and "T2 STARTED".
+FI-03  Dead conditions `if (rx_valid_count != 0 && 1'b0)` and an empty
+       if-block removed. Timeout subtype 2 now snapshots rx_valid_count
+       AFTER the engine, waits the full TIMEOUT_THRESHOLD and proves
+       rx_valid_count is unchanged.
+FI-04  Timeout taxonomy completed (4 honest sub-types):
+       0 TRUNCATED_WORD          trailing bits suppressed -> RX completes
+                                 a corrupted word (data corruption,
+                                 predicted bit-accurately)
+       1 SILENT_BUS_ARMED_RX     whole word suppressed, RX armed -> DUT
+                                 produces a FALSE RECEPTION (hallucinated
+                                 zero word at 15751 cycles) - documented
+                                 expected limitation
+       2 NO_COMMUNICATION        RX never armed -> no rx_valid within the
+                                 threshold (true timeout, before/after
+                                 counter proof)
+       3 ARMED_RX_NO_TX          RX armed, no TX at all -> hallucinated
+                                 zero word predicted and verified
+FI-05  expected_limitations increments ONLY after the expected condition
+       is verified. Failed verification goes to explicit *_unresolved
+       buckets; consistency equation E2 was extended:
+       faults_injected == detected + undetected + limitations + unresolved
+FI-06  Repeated-error blocks now emit a WINDOW dataset row
+       (row_type=1, fault_class=6) with repeat_count,
+       successful_transactions_between_errors, underlying_error_type,
+       underlying DUT-detected member count, window_id.
+FI-07  High-error-rate windows now emit a WINDOW dataset row
+       (row_type=1): fault_class=8 + condition=1 when the threshold is
+       met, class 0 + condition=0 when below. Fields: window_size,
+       window_faulty, error_rate_pct, threshold, dominant_error_type.
+FI-08  CSV separates total_transactions / valid_transactions /
+       errors_observed / faults_injected / fault_tests. `error_count`
+       (which carried the test-case counter) no longer exists.
+FI-09  fault_class and health_label are independent columns. Legal
+       health values: 0..8 and 98 only. TWO-BIT rows keep ground truth
+       class 1 + expected_limitation_flag=1 (subclass 20 moved to the
+       underlying_fault_type column). Reset rows are health 0 event rows.
+FI-10  row_type + transaction_id + window_id + event_id +
+       ref_transaction_id. Reset/event/window rows carry
+       transaction_id=-1 and never reuse a communication id.
+FI-11  Wording: "REPEATED ERROR PATTERN OBSERVED (analysis
+       classification, NOT hardware detection)". Counter renamed
+       repeated_error_patterns_observed; per-block underlying
+       DUT-detected members reported separately.
+FI-12  Wording: "HIGH ERROR RATE CLASSIFIED (window-level ANALYSIS, not
+       hardware detection)". Counter renamed
+       high_error_rate_windows_classified.
+FI-13  FIFO cases verify the PER-CASE event delta (events_after -
+       events_before == planned), never the cumulative counter.
+FI-14  Invalid-label rows record original_label, injected_label and
+       label_supported=0 columns + framework sanity check that the
+       injected label is really outside the application-defined set.
+FI-15  Bus-idle classification condition (idle_duration >= IDLE_THRESHOLD
+       AND no TX/RX activity) recorded explicitly; new directed GAP
+       CONTROL proves a normal 2000-cycle interword gap is NOT classified
+       as BUS_IDLE_ERROR.
+FI-16  Directed windows added: 0%, 10%, 28% (below), 30% (exactly at the
+       >= threshold boundary -> classified), 50% (above).
+FI-17  rand_range() guards degenerate ranges; window size clamped 2..64;
+       planned faults clamped to window size (no infinite loop); fifo
+       depth clamped 1..64; idle threshold clamped above the normal gap;
+       timeout threshold clamped >= one transaction; full plusarg set:
+       +SEED +MODE +TESTS +PROB +WINDOW +THRESH +TIMEOUT +IDLE +FDEPTH
+       +REPMIN +REPMAX.
+FI-18  HEALTH_UNRELIABLE=98 written ONLY when a row's verification could
+       not be established (framework failure / parity anomaly). A DUT
+       miss of a validly injected fault keeps the ground-truth class with
+       verification_status=VER_FAIL_DUT. New parity_anomalies bucket for
+       "parity flagged but response != bit-accurate prediction". Every
+       reset case now runs a post-reset RECOVERY transaction that must
+       fully pass before the case can PASS.
+
+COUNTER CONSISTENCY EQUATIONS (all verified holding in simulation)
+  E1  total_tests == passed_tests + failed_tests
+  E2  faults_injected == faults_detected + faults_undetected
+      + expected_limitations + faults_unresolved
+  E3  parity_faults == parity_detected + parity_undetected
+      + parity_anomalies
+  E4  two_bit_faults == two_bit_limitations
+  E5  timeout_faults == timeout_observed + timeout_unresolved
+  E6  fifo_overflow_events == fifo_overflow_expected_limit
+      + fifo_overflow_unresolved
+  E7  fifo_underflow_events == fifo_underflow_expected_limit
+      + fifo_underflow_unresolved
+  E8  invalid_label_faults == invalid_label_expected_limit
+      + invalid_label_unresolved
+  E9  bus_idle_cases == bus_idle_expected_limit + bus_idle_unresolved
+  E10 repeated_error_cases == repeated_error_patterns_observed
+      + repeated_error_failed
+  E11 high_error_rate_cases == high_error_rate_windows_classified
+      + high_error_rate_windows_below + high_error_rate_failed
+  E12 normal_tests == normal_passed + normal_failed
+  E13 reset_tests == reset_passed + reset_failed
+  E14 sum(bit_faults_by_*) == parity_faults
+Window-level records (repeated blocks, high-rate windows) never touch
+total/passed/failed - their member transactions were already counted;
+E10/E11 are the window-level ledgers. This prevents double-counting.
+
+SIMULATION EVIDENCE (Icarus Verilog 12.0, Verilog-2001 mode)
+  Review-1 regression on the deliverable file set:
+    TX regression         9/9  PASS
+    RX regression        20/20 PASS
+    Controller regression 15/15 PASS (1 expected limitation = two-bit)
+  Corrected fault TB:
+    +MODE=0 (injection off)            PASS, all 14 equations hold
+    +MODE=2 (directed, all suites)     PASS, all 14 equations hold
+    +MODE=1 +TESTS=12 (staged)         PASS, all 14 equations hold
+    +MODE=1 +SEED=42 run twice         IDENTICAL fault sequences
+    +MODE=1 +SEED=42 vs +SEED=7        DIFFERENT sequences (as required)
+    Reset proofs: "serial bit 12 corrupted on the wire: FIU_in=0
+    FIU_out=1", "T1 COMPLETED", "T2 STARTED after tx_busy==0".
+  NOTE: $random(seed) sequences are reproducible per simulator; re-run
+  under Vivado XSim with the same seed to regenerate the dataset there.
+
+XSIM COMPATIBILITY NOTES
+  Verilog-2001 only. No SystemVerilog constructs. $random(seed),
+  $value$plusargs, $fopen/$fdisplay/$fclose, tasks with timing controls
+  and real variables ($rtoi) are all supported by Vivado XSim.
+  Add to XSim: the 3 RTL files + tb/arinc429_fault_injector.v +
+  tb/tb_arinc429_fault_injection.v as SIMULATION sources ONLY
+  (arinc429_fault_injector.v and both tb_* files must NOT enter
+  synthesis). Run modes with -testplusarg, e.g.
+    -testplusarg +MODE=2 -testplusarg +SEED=1
+  The CSV (arinc429_ml_dataset_seed<SEED>.csv) is written to the XSim
+  working directory.
+
+----------------------------------------------------------------------------
+FI-19 (added in the final correction pass, master-prompt FIX 40 + FINAL
+CSV AUDIT): every CSV dataset row is now audited at write time by
+audit_csv_row() before it is written. Checks: sample_id strictly
+monotonic (unique, no gaps, no reuse), row_type in {0..3}, fault_class
+in {0..8, 20, 99}, fault position in [-1..31], error rate in [0..100]%,
+window-counter coherence (0 <= faulty <= size; nonzero faulty forbidden
+on non-window rows), health_label in {0..8, 98}, verification_status in
+{0..3}. Any violation increments dataset_integrity_failures, which is
+printed in the summary and gates the final OVERALL RESULT - a malformed
+CSV can never yield a PASS. Verified: all runs report
+dataset_integrity_failures = 0 and an independent external Python audit
+of all generated CSVs (field counts, duplicate ids, ranges) passes.
+Also verified in this pass: Review-1 regressions TX 9/9, RX 20/20,
+CTRL 15/15; MODE=0/1/2 PASS; seed-42 reproducibility byte-identical.

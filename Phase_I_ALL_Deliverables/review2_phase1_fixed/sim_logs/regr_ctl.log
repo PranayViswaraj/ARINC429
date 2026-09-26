@@ -1,0 +1,42 @@
+PASS [INITIAL_RESET]
+PASS [LOOPBACK_1] word=80000401
+PASS [LOOPBACK_2] word=a0000902
+PASS [LOOPBACK_MAX] word=7fffffff
+PASS [EXTERNAL_RX]
+PASS [PARITY_FAULT]: single-bit fault detected.
+PASS [DATA_FAULT]: single-bit fault detected.
+PASS [LABEL_FAULT]: single-bit fault detected.
+PASS [SDI_FAULT]: single-bit fault detected.
+PASS [SSM_FAULT]: single-bit fault detected.
+EXPECTED LIMITATION [TWO_BIT_FAULT]: two-bit error escaped odd parity.
+PASS [RX_SOURCE_LATCH]
+PASS [BUSY_INPUT_LATCH]
+PASS [RESET_DURING_OPERATION]
+PASS [POST_RESET_RECOVERY] word=80266499
+
+============================================================
+ARINC 429 CONTROLLER - REVIEW 1 VERIFICATION SUMMARY
+============================================================
+Total tests           = 15
+Passed                = 15
+Failed                = 0
+Fault tests           = 6
+Single-bit faults     = 4
+Single-bit detected   = 4
+Parity-bit faults     = 1
+Parity-bit detected   = 1
+Two-bit faults        = 1
+Two-bit undetected    = 1
+Faults detected       = 5
+Faults undetected     = 1
+Expected limitations  = 1
+tx_done width errors  = 0
+rx_valid width errors = 0
+CYCLES_PER_BIT        = 500
+DATA_CYCLES           = 16000
+GAP_CYCLES            = 2000
+TOTAL_CYCLES          = 18000
+============================================================
+OVERALL RESULT = PASS
+============================================================
+/home/z/my-project/download/review2_phase1_fixed/tb_review1/tb_arinc429_controller_review1_fix.v:589: $finish called at 4471210000 (1ps)

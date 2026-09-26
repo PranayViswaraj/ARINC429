@@ -1,0 +1,2102 @@
+============================================================
+ARINC 429 PHASE-1 FAULT INJECTION TESTBENCH (Review-2 rev B)
+============================================================
+USER_SEED                    = 1  (same seed reproduces the identical fault sequence)
+RUN MODE                     = 1  (0=NORMAL, 1=RANDOM, 2=DIRECTED)
+NUM_RANDOM_TESTS             = 60
+FAULT_PROBABILITY            = 80 %
+ERROR_RATE_WINDOW            = 10 transactions
+HIGH_ERROR_RATE_THRESHOLD    = 30 %   [PROJECT-DEFINED]
+TIMEOUT_THRESHOLD            = 22000 cycles (440 us) [PROJECT-DEFINED]
+IDLE_THRESHOLD               = 22000 cycles (440 us) [PROJECT-DEFINED, > normal gap 2000]
+FIFO_DEPTH (verification model) = 4  [NO FIFO IN RTL]
+REPEAT_ERROR_RANGE           = 3..6
+CYCLES_PER_BIT=500 GAP_CYCLES=2000 TOTAL_TX_CYCLES=18000 RX_VALID_DELAY=15751
+CSV dataset file             = arinc429_ml_dataset_seed1.csv (46-column schema)
+DUT files: UNMODIFIED Review-1 RTL; injector: TESTBENCH ONLY
+Detection honesty: REPEATED/HIGH-RATE are ANALYSIS classifications;
+  TIMEOUT/IDLE/FIFO/LABEL are EXPECTED LIMITATIONS (no such RTL hardware).
+============================================================
+Result              : PASS [INITIAL_RESET] outputs clean
+============================================================
+REGRESSION BLOCK: normal traffic, injection disabled (FIU=wire)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 1
+Seed (snapshot)     : 1
+Fault class         : NORMAL
+Tag                 : NORMAL
+Original word       : 84e61805
+Expected word       : 84e61805
+Injected stream     : 84e618a0
+Expected RX word    : 84e61805 (parity_error=0)
+Actual RX word      : 84e61805 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+============================================================
+DIRECTED SUITE 1: single-bit fault at EVERY serial position
+(proves serial<->word mapping for all 32 positions)
+============================================================
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 0 = word bit 7 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 1 = word bit 6 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 2 = word bit 5 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 3 = word bit 4 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 4 = word bit 3 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 5 = word bit 2 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 6 = word bit 1 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 7 = word bit 0 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 8 = word bit 8 [SDI])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 9 = word bit 9 [SDI])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 10 = word bit 10 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 11 = word bit 11 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 12 = word bit 12 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 13 = word bit 13 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 14 = word bit 14 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 15 = word bit 15 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 16 = word bit 16 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 17 = word bit 17 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 18 = word bit 18 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 19 = word bit 19 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 20 = word bit 20 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 21 = word bit 21 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 22 = word bit 22 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 23 = word bit 23 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 24 = word bit 24 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 25 = word bit 25 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 26 = word bit 26 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 27 = word bit 27 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 28 = word bit 28 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 29 = word bit 29 [SSM])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 30 = word bit 30 [SSM])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 31 = word bit 31 [PARITY])
+DIRECTED SUITE 1 COMPLETE: 32/32 serial positions exercised
+============================================================
+DIRECTED SUITE 2: two-bit corruption (parity limitation)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 35
+Seed (snapshot)     : 1
+Fault class         : PARITY_TWO_BIT_LIMIT
+Tag                 : TWO_BIT_FAULT
+Original word       : ffeb2565
+Expected word       : ffeb2565
+Injected stream     : ffeb25a5
+Expected RX word    : ffeb25a5 (parity_error=0)
+Actual RX word      : ffeb25a5 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : EXPECTED LIMITATION OBSERVED
+                      two-bit corruption escaped odd parity
+                      (rx_word differs, parity_error=0) - correct parity mathematics
+------------------------------------------------------------
+Transaction ID      : 36
+Seed (snapshot)     : 1
+Fault class         : PARITY_TWO_BIT_LIMIT
+Tag                 : TWO_BIT_FAULT
+Original word       : 8378c125
+Expected word       : 8378c125
+Injected stream     : 2378c1a4
+Expected RX word    : 2378c125 (parity_error=0)
+Actual RX word      : 2378c125 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : EXPECTED LIMITATION OBSERVED
+                      two-bit corruption escaped odd parity
+                      (rx_word differs, parity_error=0) - correct parity mathematics
+============================================================
+DIRECTED SUITE 3: communication timeout sub-types
+(0 truncated word, 1 silent-bus false reception,
+ 2 no communication, 3 armed RX with no TX)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 37
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_TRUNCATED_WORD
+Original word       : 3f829e65
+Expected word       : 3f829e65
+Injected stream     : 000000a6
+Expected RX word    : 00000065 (parity_error=1)
+Actual RX word      : 00000065 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 37
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_TRUNCATED_WORD
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      RX completed an INCOMPLETE word (trailing bits read as 0) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 38
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Original word       : 5dfb5765
+Expected word       : 5dfb5765
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 38
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      ARMED RX on SILENT BUS: DUT produced a FALSE RECEPTION (hallucinated zero word) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 39
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_NO_COMMUNICATION
+Original word       : e6b77e65
+Expected word       : e6b77e65
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=0 tx_done=1  (counters +0 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 39
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_NO_COMMUNICATION
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 22000 cycles
+rx_valid seen       : 0
+Result              : PASS (fault observed at verification level)
+                      NO reception event within the 22000-cycle threshold (rx_valid_count unchanged)
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 40
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_ARMED_RX_NO_TX
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      ARMED RX with NO transmission: hallucinated zero word at 15751 cycles (RX has no activity qualifier)
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+============================================================
+DIRECTED SUITE 4: verification-modeled FIFO events
+============================================================
+------------------------------------------------------------
+Transaction ID      : 41
+Seed (snapshot)     : 1
+Fault class         : FIFO_OVERFLOW
+Tag                 : O_OVERFLOW(verification-modeled)
+Original word       : 6ef7d565
+Expected word       : 6ef7d565
+Injected stream     : 6ef7d5a6
+Expected RX word    : 6ef7d565 (parity_error=0)
+Actual RX word      : 6ef7d565 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+Result              : PASS (verification-modeled FIFO overflow)
+                      occupancy_before=0 writes_attempted=6 overflow_events=2 (planned 2)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+------------------------------------------------------------
+Transaction ID      : 42
+Seed (snapshot)     : 1
+Fault class         : FIFO_UNDERFLOW
+Tag                 : _UNDERFLOW(verification-modeled)
+Original word       : f2646165
+Expected word       : f2646165
+Injected stream     : f26461a6
+Expected RX word    : f2646165 (parity_error=0)
+Actual RX word      : f2646165 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+Result              : PASS (verification-modeled FIFO underflow)
+                      occupancy_before=0 reads_attempted=2 underflow_events=2 (planned 2)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+============================================================
+DIRECTED SUITE 5: application-defined invalid labels
+============================================================
+------------------------------------------------------------
+Transaction ID      : 43
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 70f73e00
+Expected word       : 70f73e00
+Injected stream     : 70f73e00
+Expected RX word    : 70f73e00 (parity_error=0)
+Actual RX word      : 70f73e00 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000025 injected_label=00 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 44
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : da13b0ff
+Expected word       : da13b0ff
+Injected stream     : da13b0ff
+Expected RX word    : da13b0ff (parity_error=0)
+Actual RX word      : da13b0ff (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000035 injected_label=ff supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+============================================================
+DIRECTED SUITE 6: bus idle error + normal-gap control
+============================================================
+------------------------------------------------------------
+Transaction ID      : 45
+Fault class         : BUS_IDLE_ERROR
+Idle threshold      : 22000 cycles (PROJECT-DEFINED)
+Result              : PASS (fault observed at verification level)
+                      idle_duration=22045 cycles >= IDLE_THRESHOLD=22000 -> BUS IDLE condition
+                      (440 us with no TX/RX activity)
+                      DUT IDLE DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 46
+Seed (snapshot)     : 1
+Fault class         : NORMAL
+Tag                 : GAP_CONTROL(normal gap)
+Original word       : 1d595025
+Expected word       : 1d595025
+Injected stream     : 1d5950a4
+Expected RX word    : 1d595025 (parity_error=0)
+Actual RX word      : 1d595025 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : GAP_CONTROL(normal gap) PASS (normal communication verified)
+Result              : PASS (GAP CONTROL)
+                      normal interword gap = 2000 cycles < IDLE_THRESHOLD=22000
+                      normal gap NOT classified as BUS_IDLE_ERROR (bus_idle_count unchanged)
+============================================================
+DIRECTED SUITE 7: high-error-rate windows incl. boundary
+(FI-16: 0%, low, below-boundary, at-boundary, above)
+============================================================
+============================================================
+HIGH-RATE WINDOW: window=10 txns, planned_faults=0 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=10 faulty=0 normal=10 error_rate=0%
+                          dominant_error_type=NONE (parity=0 label=0)
+                          CLASSIFICATION: BELOW_HIGH_ERROR_RATE_THRESHOLD (rate < threshold; recorded as class 0 window)
+============================================================
+HIGH-RATE WINDOW: window=50 txns, planned_faults=5 (threshold=30% PROJECT-DEFINED)
+============================================================
+  [WINDOW 1/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 7/50] COMBO: INVALID_LABEL within window
+  [WINDOW 8/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 14/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 35/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=50 faulty=5 normal=45 error_rate=10%
+                          dominant_error_type=INVALID_LABEL (parity=0 label=5)
+                          CLASSIFICATION: BELOW_HIGH_ERROR_RATE_THRESHOLD (rate < threshold; recorded as class 0 window)
+============================================================
+HIGH-RATE WINDOW: window=50 txns, planned_faults=14 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 31 = word bit 31 [PARITY])
+  [WINDOW 3/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 8/50] COMBO: INVALID_LABEL within window
+  [WINDOW 9/50] COMBO: INVALID_LABEL within window
+  [WINDOW 10/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 14/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 18/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 20/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 27 = word bit 27 [DATA])
+  [WINDOW 25/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 27/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 16 = word bit 16 [DATA])
+  [WINDOW 30/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 32/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 38/50] COMBO: INVALID_LABEL within window
+  [WINDOW 39/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 0 = word bit 7 [LABEL])
+  [WINDOW 43/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=50 faulty=14 normal=36 error_rate=28%
+                          dominant_error_type=INVALID_LABEL (parity=4 label=10)
+                          CLASSIFICATION: BELOW_HIGH_ERROR_RATE_THRESHOLD (rate < threshold; recorded as class 0 window)
+============================================================
+HIGH-RATE WINDOW: window=50 txns, planned_faults=15 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 8/50] COMBO: INVALID_LABEL within window
+  [WINDOW 9/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 11/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 14/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 18 = word bit 18 [DATA])
+  [WINDOW 19/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 24/50] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 21 = word bit 21 [DATA])
+  [WINDOW 25/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 21 = word bit 21 [DATA])
+  [WINDOW 27/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 30/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 16 = word bit 16 [DATA])
+  [WINDOW 32/50] COMBO: PARITY_ERROR within window
+  [WINDOW 33/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 3 = word bit 4 [LABEL])
+  [WINDOW 36/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 9 = word bit 9 [SDI])
+  [WINDOW 43/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 45/50] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 18 = word bit 18 [DATA])
+  [WINDOW 46/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=50 faulty=15 normal=35 error_rate=30%
+                          dominant_error_type=INVALID_LABEL (parity=7 label=8)
+                          CLASSIFICATION: HIGH ERROR RATE CLASSIFIED (rate >= threshold; window-level ANALYSIS, not hardware detection)
+============================================================
+HIGH-RATE WINDOW: window=50 txns, planned_faults=25 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 7 = word bit 0 [LABEL])
+  [WINDOW 1/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 21 = word bit 21 [DATA])
+  [WINDOW 6/50] COMBO: PARITY_ERROR within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 16 = word bit 16 [DATA])
+  [WINDOW 7/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 23 = word bit 23 [DATA])
+  [WINDOW 9/50] COMBO: PARITY_ERROR within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 28 = word bit 28 [DATA])
+  [WINDOW 10/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 15/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 17 = word bit 17 [DATA])
+  [WINDOW 22/50] COMBO: PARITY_ERROR within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 9 = word bit 9 [SDI])
+  [WINDOW 23/50] COMBO: PARITY_ERROR within window
+  [WINDOW 24/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 16 = word bit 16 [DATA])
+  [WINDOW 28/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 30/50] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 11 = word bit 11 [DATA])
+  [WINDOW 31/50] COMBO: PARITY_ERROR within window
+  [WINDOW 32/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 34/50] COMBO: INVALID_LABEL within window
+  [WINDOW 35/50] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 8 = word bit 8 [SDI])
+  [WINDOW 36/50] COMBO: PARITY_ERROR within window
+  [WINDOW 37/50] COMBO: INVALID_LABEL within window
+  [WINDOW 38/50] COMBO: INVALID_LABEL within window
+  [WINDOW 39/50] COMBO: INVALID_LABEL within window
+  [WINDOW 40/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 43/50] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 22 = word bit 22 [DATA])
+  [WINDOW 45/50] COMBO: PARITY_ERROR within window
+  [WINDOW 46/50] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 30 = word bit 30 [SSM])
+  [WINDOW 47/50] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 3 = word bit 4 [LABEL])
+  [WINDOW 50/50] COMBO: PARITY_ERROR within window
+HIGH-RATE WINDOW SUMMARY: total=50 faulty=25 normal=25 error_rate=50%
+                          dominant_error_type=PARITY_ERROR (parity=13 label=12)
+                          CLASSIFICATION: HIGH ERROR RATE CLASSIFIED (rate >= threshold; window-level ANALYSIS, not hardware detection)
+============================================================
+STAGE 1: normal + individual faults (randomized parameters)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 257
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 36aac135
+Expected word       : 36aac135
+Injected stream     : 36aac1ad
+Expected RX word    : 36aac1b5 (parity_error=1)
+Actual RX word      : 36aac1b5 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 0 = word bit 7 [LABEL])
+------------------------------------------------------------
+Transaction ID      : 258
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 0f450b15
+Expected word       : 0f450b15
+Injected stream     : 0f450ba0
+Expected RX word    : 0f450b05 (parity_error=1)
+Actual RX word      : 0f450b05 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 3 = word bit 4 [LABEL])
+------------------------------------------------------------
+Transaction ID      : 259
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 9f2ae515
+Expected word       : 9f2ae515
+Injected stream     : 1f2ae5a8
+Expected RX word    : 1f2ae515 (parity_error=1)
+Actual RX word      : 1f2ae515 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 31 = word bit 31 [PARITY])
+------------------------------------------------------------
+Transaction ID      : 260
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 925d6165
+Expected word       : 925d6165
+Injected stream     : 925d41a6
+Expected RX word    : 925d4165 (parity_error=1)
+Actual RX word      : 925d4165 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 13 = word bit 13 [DATA])
+------------------------------------------------------------
+Transaction ID      : 261
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 71cf0c75
+Expected word       : 71cf0c75
+Injected stream     : 71ce0cae
+Expected RX word    : 71ce0c75 (parity_error=1)
+Actual RX word      : 71ce0c75 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 16 = word bit 16 [DATA])
+------------------------------------------------------------
+Transaction ID      : 262
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : ad2bb105
+Expected word       : ad2bb105
+Injected stream     : a92bb1a0
+Expected RX word    : a92bb105 (parity_error=1)
+Actual RX word      : a92bb105 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 26 = word bit 26 [DATA])
+------------------------------------------------------------
+Transaction ID      : 263
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_TRUNCATED_WORD
+Original word       : 801f0205
+Expected word       : 801f0205
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 263
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_TRUNCATED_WORD
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      RX completed an INCOMPLETE word (trailing bits read as 0) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 264
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_NO_COMMUNICATION
+Original word       : b2e9f745
+Expected word       : b2e9f745
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=0 tx_done=1  (counters +0 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 264
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_NO_COMMUNICATION
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 22000 cycles
+rx_valid seen       : 0
+Result              : PASS (fault observed at verification level)
+                      NO reception event within the 22000-cycle threshold (rx_valid_count unchanged)
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 265
+Seed (snapshot)     : 1
+Fault class         : FIFO_OVERFLOW
+Tag                 : O_OVERFLOW(verification-modeled)
+Original word       : cd6f9e25
+Expected word       : cd6f9e25
+Injected stream     : cd6f9ea4
+Expected RX word    : cd6f9e25 (parity_error=0)
+Actual RX word      : cd6f9e25 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+Result              : PASS (verification-modeled FIFO overflow)
+                      occupancy_before=0 writes_attempted=7 overflow_events=3 (planned 3)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+------------------------------------------------------------
+Transaction ID      : 266
+Seed (snapshot)     : 1
+Fault class         : FIFO_UNDERFLOW
+Tag                 : _UNDERFLOW(verification-modeled)
+Original word       : b20c1035
+Expected word       : b20c1035
+Injected stream     : b20c10ac
+Expected RX word    : b20c1035 (parity_error=0)
+Actual RX word      : b20c1035 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+Result              : PASS (verification-modeled FIFO underflow)
+                      occupancy_before=0 reads_attempted=2 underflow_events=2 (planned 2)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+------------------------------------------------------------
+Transaction ID      : 267
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 1164a1c4
+Expected word       : 1164a1c4
+Injected stream     : 1164a123
+Expected RX word    : 1164a1c4 (parity_error=0)
+Actual RX word      : 1164a1c4 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000045 injected_label=c4 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 268
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : b84977c5
+Expected word       : b84977c5
+Injected stream     : b84977a3
+Expected RX word    : b84977c5 (parity_error=0)
+Actual RX word      : b84977c5 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000025 injected_label=c5 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 269
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 312c32ac
+Expected word       : 312c32ac
+Injected stream     : 312c3235
+Expected RX word    : 312c32ac (parity_error=0)
+Actual RX word      : 312c32ac (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000025 injected_label=ac supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 270
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 22c2f732
+Expected word       : 22c2f732
+Injected stream     : 22c2f74c
+Expected RX word    : 22c2f732 (parity_error=0)
+Actual RX word      : 22c2f732 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000055 injected_label=32 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 271
+Fault class         : BUS_IDLE_ERROR
+Idle threshold      : 22000 cycles (PROJECT-DEFINED)
+Result              : PASS (fault observed at verification level)
+                      idle_duration=24265 cycles >= IDLE_THRESHOLD=22000 -> BUS IDLE condition
+                      (485 us with no TX/RX activity)
+                      DUT IDLE DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 272
+Fault class         : BUS_IDLE_ERROR
+Idle threshold      : 22000 cycles (PROJECT-DEFINED)
+Result              : PASS (fault observed at verification level)
+                      idle_duration=24099 cycles >= IDLE_THRESHOLD=22000 -> BUS IDLE condition
+                      (481 us with no TX/RX activity)
+                      DUT IDLE DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+============================================================
+STAGE 2: repeated communication errors
+============================================================
+============================================================
+REPEATED ERROR BLOCK: base=PARITY_ERROR repeat_count=6 (gap_since_last=0)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 273
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : e36f9475
+Expected word       : e36f9475
+Injected stream     : e36f948e
+Expected RX word    : e36f9471 (parity_error=1)
+Actual RX word      : e36f9471 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 5 = word bit 2 [LABEL])
+------------------------------------------------------------
+Transaction ID      : 274
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : f284cf65
+Expected word       : f284cf65
+Injected stream     : f280cfa6
+Expected RX word    : f280cf65 (parity_error=1)
+Actual RX word      : f280cf65 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 18 = word bit 18 [DATA])
+------------------------------------------------------------
+Transaction ID      : 275
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 06ba3535
+Expected word       : 06ba3535
+Injected stream     : 86ba35ac
+Expected RX word    : 86ba3535 (parity_error=1)
+Actual RX word      : 86ba3535 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 31 = word bit 31 [PARITY])
+------------------------------------------------------------
+Transaction ID      : 276
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : fa2e6a15
+Expected word       : fa2e6a15
+Injected stream     : fe2e6aa8
+Expected RX word    : fe2e6a15 (parity_error=1)
+Actual RX word      : fe2e6a15 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 26 = word bit 26 [DATA])
+------------------------------------------------------------
+Transaction ID      : 277
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : b3c17245
+Expected word       : b3c17245
+Injected stream     : b3c17aa2
+Expected RX word    : b3c17a45 (parity_error=1)
+Actual RX word      : b3c17a45 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 11 = word bit 11 [DATA])
+------------------------------------------------------------
+Transaction ID      : 278
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 98729f55
+Expected word       : 98729f55
+Injected stream     : 98709faa
+Expected RX word    : 98709f55 (parity_error=1)
+Actual RX word      : 98709f55 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 17 = word bit 17 [DATA])
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=6 consecutive_error_count=29 successes_between=0
+                        underlying_error_type=PARITY_ERROR underlying DUT-detected members=6/6
+============================================================
+REPEATED ERROR BLOCK: base=INVALID_LABEL repeat_count=4 (gap_since_last=0)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 279
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : a12cf11b
+Expected word       : a12cf11b
+Injected stream     : a12cf1d8
+Expected RX word    : a12cf11b (parity_error=0)
+Actual RX word      : a12cf11b (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000035 injected_label=1b supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 280
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 53b040b0
+Expected word       : 53b040b0
+Injected stream     : 53b0400d
+Expected RX word    : 53b040b0 (parity_error=0)
+Actual RX word      : 53b040b0 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000065 injected_label=b0 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 281
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 71df2878
+Expected word       : 71df2878
+Injected stream     : 71df281e
+Expected RX word    : 71df2878 (parity_error=0)
+Actual RX word      : 71df2878 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000075 injected_label=78 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 282
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 32cb661f
+Expected word       : 32cb661f
+Injected stream     : 32cb66f8
+Expected RX word    : 32cb661f (parity_error=0)
+Actual RX word      : 32cb661f (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000035 injected_label=1f supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=4 consecutive_error_count=37 successes_between=0
+                        underlying_error_type=INVALID_LABEL underlying DUT-detected members=0/4
+                        INVALID_LABEL base: DUT has no label validator, underlying detection impossible (honest 0)
+============================================================
+REPEATED ERROR BLOCK: base=PARITY_ERROR repeat_count=6 (gap_since_last=0)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 283
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 8a1cf405
+Expected word       : 8a1cf405
+Injected stream     : 8a1cf4e0
+Expected RX word    : 8a1cf407 (parity_error=1)
+Actual RX word      : 8a1cf407 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 6 = word bit 1 [LABEL])
+------------------------------------------------------------
+Transaction ID      : 284
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : cadda675
+Expected word       : cadda675
+Injected stream     : cafda6ae
+Expected RX word    : cafda675 (parity_error=1)
+Actual RX word      : cafda675 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 21 = word bit 21 [DATA])
+------------------------------------------------------------
+Transaction ID      : 285
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 473cdd25
+Expected word       : 473cdd25
+Injected stream     : 4738dda4
+Expected RX word    : 4738dd25 (parity_error=1)
+Actual RX word      : 4738dd25 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 18 = word bit 18 [DATA])
+------------------------------------------------------------
+Transaction ID      : 286
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : c7c6ed55
+Expected word       : c7c6ed55
+Injected stream     : e7c6edaa
+Expected RX word    : e7c6ed55 (parity_error=1)
+Actual RX word      : e7c6ed55 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 29 = word bit 29 [SSM])
+------------------------------------------------------------
+Transaction ID      : 287
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : b286c745
+Expected word       : b286c745
+Injected stream     : b286e7a2
+Expected RX word    : b286e745 (parity_error=1)
+Actual RX word      : b286e745 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 13 = word bit 13 [DATA])
+------------------------------------------------------------
+Transaction ID      : 288
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : bf7e2615
+Expected word       : bf7e2615
+Injected stream     : bf7e22a8
+Expected RX word    : bf7e2215 (parity_error=1)
+Actual RX word      : bf7e2215 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 10 = word bit 10 [DATA])
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=6 consecutive_error_count=49 successes_between=0
+                        underlying_error_type=PARITY_ERROR underlying DUT-detected members=6/6
+============================================================
+STAGE 3: mixed randomized fault scenarios (60 iterations, prob=80%)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 289
+Seed (snapshot)     : 1
+Fault class         : FIFO_UNDERFLOW
+Tag                 : _UNDERFLOW(verification-modeled)
+Original word       : 14e5e235
+Expected word       : 14e5e235
+Injected stream     : 14e5e2ac
+Expected RX word    : 14e5e235 (parity_error=0)
+Actual RX word      : 14e5e235 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+Result              : PASS (verification-modeled FIFO underflow)
+                      occupancy_before=0 reads_attempted=3 underflow_events=3 (planned 3)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+------------------------------------------------------------
+Transaction ID      : 290
+Seed (snapshot)     : 1
+Fault class         : FIFO_UNDERFLOW
+Tag                 : _UNDERFLOW(verification-modeled)
+Original word       : 1508ff15
+Expected word       : 1508ff15
+Injected stream     : 1508ffa8
+Expected RX word    : 1508ff15 (parity_error=0)
+Actual RX word      : 1508ff15 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+Result              : PASS (verification-modeled FIFO underflow)
+                      occupancy_before=0 reads_attempted=3 underflow_events=3 (planned 3)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 21 = word bit 21 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 5 = word bit 2 [LABEL])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 25 = word bit 25 [DATA])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 27 = word bit 27 [DATA])
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+------------------------------------------------------------
+Transaction ID      : 299
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_NO_COMMUNICATION
+Original word       : 6fba3055
+Expected word       : 6fba3055
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 54264e75 (parity_error=0)
+rx_valid=0 tx_done=1  (counters +0 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 299
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_NO_COMMUNICATION
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 22000 cycles
+rx_valid seen       : 0
+Result              : PASS (fault observed at verification level)
+                      NO reception event within the 22000-cycle threshold (rx_valid_count unchanged)
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+============================================================
+HIGH-RATE WINDOW: window=10 txns, planned_faults=4 (threshold=30% PROJECT-DEFINED)
+============================================================
+  [WINDOW 1/10] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 12 = word bit 12 [DATA])
+  [WINDOW 2/10] COMBO: PARITY_ERROR within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 30 = word bit 30 [SSM])
+  [WINDOW 3/10] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 7/10] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=10 faulty=4 normal=6 error_rate=40%
+                          dominant_error_type=PARITY_ERROR (parity=2 label=2)
+                          CLASSIFICATION: HIGH ERROR RATE CLASSIFIED (rate >= threshold; window-level ANALYSIS, not hardware detection)
+============================================================
+HIGH-RATE WINDOW: window=10 txns, planned_faults=10 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 8 = word bit 8 [SDI])
+  [WINDOW 1/10] COMBO: PARITY_ERROR within window
+  [WINDOW 2/10] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 1 = word bit 6 [LABEL])
+  [WINDOW 3/10] COMBO: PARITY_ERROR within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 13 = word bit 13 [DATA])
+  [WINDOW 4/10] COMBO: PARITY_ERROR within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 11 = word bit 11 [DATA])
+  [WINDOW 5/10] COMBO: PARITY_ERROR within window
+  [WINDOW 6/10] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 29 = word bit 29 [SSM])
+  [WINDOW 7/10] COMBO: PARITY_ERROR within window
+  [WINDOW 8/10] COMBO: INVALID_LABEL within window
+  [WINDOW 9/10] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 31 = word bit 31 [PARITY])
+  [WINDOW 10/10] COMBO: PARITY_ERROR within window
+HIGH-RATE WINDOW SUMMARY: total=10 faulty=10 normal=0 error_rate=100%
+                          dominant_error_type=PARITY_ERROR (parity=6 label=4)
+                          CLASSIFICATION: HIGH ERROR RATE CLASSIFIED (rate >= threshold; window-level ANALYSIS, not hardware detection)
+Result              : NORMAL PASS (normal communication verified)
+------------------------------------------------------------
+Transaction ID      : 321
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Original word       : fa20d235
+Expected word       : fa20d235
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 321
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      ARMED RX on SILENT BUS: DUT produced a FALSE RECEPTION (hallucinated zero word) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+============================================================
+REPEATED ERROR BLOCK: base=INVALID_LABEL repeat_count=5 (gap_since_last=0)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 322
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 05ec7b0f
+Expected word       : 05ec7b0f
+Injected stream     : 05ec7bf0
+Expected RX word    : 05ec7b0f (parity_error=0)
+Actual RX word      : 05ec7b0f (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000035 injected_label=0f supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 323
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 3330c658
+Expected word       : 3330c658
+Injected stream     : 3330c61a
+Expected RX word    : 3330c658 (parity_error=0)
+Actual RX word      : 3330c658 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000075 injected_label=58 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 324
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 2c4b52e5
+Expected word       : 2c4b52e5
+Injected stream     : 2c4b52a7
+Expected RX word    : 2c4b52e5 (parity_error=0)
+Actual RX word      : 2c4b52e5 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000035 injected_label=e5 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 325
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 7d5ec4cd
+Expected word       : 7d5ec4cd
+Injected stream     : 7d5ec4b3
+Expected RX word    : 7d5ec4cd (parity_error=0)
+Actual RX word      : 7d5ec4cd (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000045 injected_label=cd supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 326
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : aa22d0d2
+Expected word       : aa22d0d2
+Injected stream     : aa22d04b
+Expected RX word    : aa22d0d2 (parity_error=0)
+Actual RX word      : aa22d0d2 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000055 injected_label=d2 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=5 consecutive_error_count=11 successes_between=0
+                        underlying_error_type=INVALID_LABEL underlying DUT-detected members=0/5
+                        INVALID_LABEL base: DUT has no label validator, underlying detection impossible (honest 0)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 11 = word bit 11 [DATA])
+============================================================
+REPEATED ERROR BLOCK: base=INVALID_LABEL repeat_count=5 (gap_since_last=0)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 329
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : c48b906c
+Expected word       : c48b906c
+Injected stream     : c48b9036
+Expected RX word    : c48b906c (parity_error=0)
+Actual RX word      : c48b906c (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000045 injected_label=6c supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 330
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 67e58e97
+Expected word       : 67e58e97
+Injected stream     : 67e58ee9
+Expected RX word    : 67e58e97 (parity_error=0)
+Actual RX word      : 67e58e97 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000055 injected_label=97 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 331
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : fd81d686
+Expected word       : fd81d686
+Injected stream     : fd81d661
+Expected RX word    : fd81d686 (parity_error=0)
+Actual RX word      : fd81d686 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000075 injected_label=86 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 332
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 304f1a01
+Expected word       : 304f1a01
+Injected stream     : 304f1a80
+Expected RX word    : 304f1a01 (parity_error=0)
+Actual RX word      : 304f1a01 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000005 injected_label=01 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 333
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 1648b03e
+Expected word       : 1648b03e
+Injected stream     : 1648b07c
+Expected RX word    : 1648b03e (parity_error=0)
+Actual RX word      : 1648b03e (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000005 injected_label=3e supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=5 consecutive_error_count=11 successes_between=0
+                        underlying_error_type=INVALID_LABEL underlying DUT-detected members=0/5
+                        INVALID_LABEL base: DUT has no label validator, underlying detection impossible (honest 0)
+Result              : NORMAL PASS (normal communication verified)
+------------------------------------------------------------
+Transaction ID      : 335
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Original word       : 6f9dc845
+Expected word       : 6f9dc845
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 335
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      ARMED RX on SILENT BUS: DUT produced a FALSE RECEPTION (hallucinated zero word) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+============================================================
+HIGH-RATE WINDOW: window=10 txns, planned_faults=5 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 6 = word bit 1 [LABEL])
+  [WINDOW 3/10] COMBO: PARITY_ERROR within window
+  [WINDOW 4/10] COMBO: INVALID_LABEL within window
+  [WINDOW 5/10] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 31 = word bit 31 [PARITY])
+  [WINDOW 7/10] COMBO: PARITY_ERROR within window
+  [WINDOW 8/10] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=10 faulty=5 normal=5 error_rate=50%
+                          dominant_error_type=INVALID_LABEL (parity=2 label=3)
+                          CLASSIFICATION: HIGH ERROR RATE CLASSIFIED (rate >= threshold; window-level ANALYSIS, not hardware detection)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 0 = word bit 7 [LABEL])
+============================================================
+REPEATED ERROR BLOCK: base=PARITY_ERROR repeat_count=4 (gap_since_last=0)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 347
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 322e6535
+Expected word       : 322e6535
+Injected stream     : 322e45ac
+Expected RX word    : 322e4535 (parity_error=1)
+Actual RX word      : 322e4535 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 13 = word bit 13 [DATA])
+------------------------------------------------------------
+Transaction ID      : 348
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 131b2945
+Expected word       : 131b2945
+Injected stream     : 931b29a2
+Expected RX word    : 931b2945 (parity_error=1)
+Actual RX word      : 931b2945 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 31 = word bit 31 [PARITY])
+------------------------------------------------------------
+Transaction ID      : 349
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 95697715
+Expected word       : 95697715
+Injected stream     : 956967a8
+Expected RX word    : 95696715 (parity_error=1)
+Actual RX word      : 95696715 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 12 = word bit 12 [DATA])
+------------------------------------------------------------
+Transaction ID      : 350
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 1b499535
+Expected word       : 1b499535
+Injected stream     : 1bc995ac
+Expected RX word    : 1bc99535 (parity_error=1)
+Actual RX word      : 1bc99535 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 23 = word bit 23 [DATA])
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=4 consecutive_error_count=9 successes_between=0
+                        underlying_error_type=PARITY_ERROR underlying DUT-detected members=4/4
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 29 = word bit 29 [SSM])
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 12 = word bit 12 [DATA])
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+============================================================
+REPEATED ERROR BLOCK: base=PARITY_ERROR repeat_count=5 (gap_since_last=3)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 356
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 32cb5435
+Expected word       : 32cb5435
+Injected stream     : 32cb542c
+Expected RX word    : 32cb5434 (parity_error=1)
+Actual RX word      : 32cb5434 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 7 = word bit 0 [LABEL])
+------------------------------------------------------------
+Transaction ID      : 357
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 1b26e165
+Expected word       : 1b26e165
+Injected stream     : 1b26e0a6
+Expected RX word    : 1b26e065 (parity_error=1)
+Actual RX word      : 1b26e065 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 8 = word bit 8 [SDI])
+------------------------------------------------------------
+Transaction ID      : 358
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : cccfad05
+Expected word       : cccfad05
+Injected stream     : cccfaca0
+Expected RX word    : cccfac05 (parity_error=1)
+Actual RX word      : cccfac05 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 8 = word bit 8 [SDI])
+------------------------------------------------------------
+Transaction ID      : 359
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : b1928b05
+Expected word       : b1928b05
+Injected stream     : b1928ba1
+Expected RX word    : b1928b85 (parity_error=1)
+Actual RX word      : b1928b85 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 0 = word bit 7 [LABEL])
+------------------------------------------------------------
+Transaction ID      : 360
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : b2a01335
+Expected word       : b2a01335
+Injected stream     : b2a013ae
+Expected RX word    : b2a01375 (parity_error=1)
+Actual RX word      : b2a01375 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 1 = word bit 6 [LABEL])
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=5 consecutive_error_count=10 successes_between=0
+                        underlying_error_type=PARITY_ERROR underlying DUT-detected members=5/5
+Result              : NORMAL PASS (normal communication verified)
+============================================================
+HIGH-RATE WINDOW: window=10 txns, planned_faults=2 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 12 = word bit 12 [DATA])
+  [WINDOW 2/10] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+  [WINDOW 5/10] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=10 faulty=2 normal=8 error_rate=20%
+                          dominant_error_type=PARITY_ERROR (parity=1 label=1)
+                          CLASSIFICATION: BELOW_HIGH_ERROR_RATE_THRESHOLD (rate < threshold; recorded as class 0 window)
+------------------------------------------------------------
+Transaction ID      : 373
+Seed (snapshot)     : 1
+Fault class         : FIFO_UNDERFLOW
+Tag                 : _UNDERFLOW(verification-modeled)
+Original word       : ed846615
+Expected word       : ed846615
+Injected stream     : ed8466a8
+Expected RX word    : ed846615 (parity_error=0)
+Actual RX word      : ed846615 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+Result              : PASS (verification-modeled FIFO underflow)
+                      occupancy_before=0 reads_attempted=1 underflow_events=1 (planned 1)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+Result              : NORMAL PASS (normal communication verified)
+============================================================
+REPEATED ERROR BLOCK: base=PARITY_ERROR repeat_count=3 (gap_since_last=1)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 375
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 993ff205
+Expected word       : 993ff205
+Injected stream     : 983ff2a0
+Expected RX word    : 983ff205 (parity_error=1)
+Actual RX word      : 983ff205 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 24 = word bit 24 [DATA])
+------------------------------------------------------------
+Transaction ID      : 376
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : b7a78a25
+Expected word       : b7a78a25
+Injected stream     : b7a78ab4
+Expected RX word    : b7a78a2d (parity_error=1)
+Actual RX word      : b7a78a2d (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 4 = word bit 3 [LABEL])
+------------------------------------------------------------
+Transaction ID      : 377
+Seed (snapshot)     : 1
+Fault class         : PARITY_ERROR
+Tag                 : PARITY_FAULT(random pos)
+Original word       : 5977ff75
+Expected word       : 5977ff75
+Injected stream     : 5977ffaa
+Expected RX word    : 5977ff55 (parity_error=1)
+Actual RX word      : 5977ff55 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 2 = word bit 5 [LABEL])
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=3 consecutive_error_count=6 successes_between=0
+                        underlying_error_type=PARITY_ERROR underlying DUT-detected members=3/3
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 1 = word bit 6 [LABEL])
+============================================================
+HIGH-RATE WINDOW: window=10 txns, planned_faults=5 (threshold=30% PROJECT-DEFINED)
+============================================================
+  [WINDOW 1/10] COMBO: INVALID_LABEL within window
+  [WINDOW 2/10] COMBO: INVALID_LABEL within window
+  [WINDOW 3/10] COMBO: INVALID_LABEL within window
+  [WINDOW 4/10] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 21 = word bit 21 [DATA])
+  [WINDOW 8/10] COMBO: PARITY_ERROR within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+HIGH-RATE WINDOW SUMMARY: total=10 faulty=5 normal=5 error_rate=50%
+                          dominant_error_type=INVALID_LABEL (parity=1 label=4)
+                          CLASSIFICATION: HIGH ERROR RATE CLASSIFIED (rate >= threshold; window-level ANALYSIS, not hardware detection)
+============================================================
+HIGH-RATE WINDOW: window=10 txns, planned_faults=8 (threshold=30% PROJECT-DEFINED)
+============================================================
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 17 = word bit 17 [DATA])
+  [WINDOW 1/10] COMBO: PARITY_ERROR within window
+  [WINDOW 2/10] COMBO: INVALID_LABEL within window
+  [WINDOW 3/10] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 13 = word bit 13 [DATA])
+  [WINDOW 5/10] COMBO: PARITY_ERROR within window
+  [WINDOW 6/10] COMBO: INVALID_LABEL within window
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 3 = word bit 4 [LABEL])
+  [WINDOW 7/10] COMBO: PARITY_ERROR within window
+  [WINDOW 8/10] COMBO: INVALID_LABEL within window
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 18 = word bit 18 [DATA])
+  [WINDOW 10/10] COMBO: PARITY_ERROR within window
+HIGH-RATE WINDOW SUMMARY: total=10 faulty=8 normal=2 error_rate=80%
+                          dominant_error_type=PARITY_ERROR (parity=4 label=4)
+                          CLASSIFICATION: HIGH ERROR RATE CLASSIFIED (rate >= threshold; window-level ANALYSIS, not hardware detection)
+Result              : NORMAL PASS (normal communication verified)
+------------------------------------------------------------
+Transaction ID      : 400
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_TRUNCATED_WORD
+Original word       : c0d06d45
+Expected word       : c0d06d45
+Injected stream     : 00006da2
+Expected RX word    : 00006d45 (parity_error=1)
+Actual RX word      : 00006d45 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 400
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_TRUNCATED_WORD
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      RX completed an INCOMPLETE word (trailing bits read as 0) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 401
+Seed (snapshot)     : 1
+Fault class         : FIFO_UNDERFLOW
+Tag                 : _UNDERFLOW(verification-modeled)
+Original word       : 64a57f45
+Expected word       : 64a57f45
+Injected stream     : 64a57fa2
+Expected RX word    : 64a57f45 (parity_error=0)
+Actual RX word      : 64a57f45 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+Result              : PASS (verification-modeled FIFO underflow)
+                      occupancy_before=0 reads_attempted=3 underflow_events=3 (planned 3)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+Result              : NORMAL PASS (normal communication verified)
+------------------------------------------------------------
+Transaction ID      : 403
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_ARMED_RX_NO_TX
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      ARMED RX with NO transmission: hallucinated zero word at 15751 cycles (RX has no activity qualifier)
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 407
+Seed (snapshot)     : 1
+Fault class         : FIFO_OVERFLOW
+Tag                 : O_OVERFLOW(verification-modeled)
+Original word       : a2520c45
+Expected word       : a2520c45
+Injected stream     : a2520ca2
+Expected RX word    : a2520c45 (parity_error=0)
+Actual RX word      : a2520c45 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+Result              : PASS (verification-modeled FIFO overflow)
+                      occupancy_before=0 writes_attempted=7 overflow_events=3 (planned 3)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+------------------------------------------------------------
+Transaction ID      : 408
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Original word       : 347ae125
+Expected word       : 347ae125
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 408
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      ARMED RX on SILENT BUS: DUT produced a FALSE RECEPTION (hallucinated zero word) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+------------------------------------------------------------
+Transaction ID      : 413
+Seed (snapshot)     : 1
+Fault class         : FIFO_OVERFLOW
+Tag                 : O_OVERFLOW(verification-modeled)
+Original word       : ee273525
+Expected word       : ee273525
+Injected stream     : ee2735a4
+Expected RX word    : ee273525 (parity_error=0)
+Actual RX word      : ee273525 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+Result              : PASS (verification-modeled FIFO overflow)
+                      occupancy_before=0 writes_attempted=6 overflow_events=2 (planned 2)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+------------------------------------------------------------
+Transaction ID      : 414
+Seed (snapshot)     : 1
+Fault class         : FIFO_OVERFLOW
+Tag                 : O_OVERFLOW(verification-modeled)
+Original word       : 5699d005
+Expected word       : 5699d005
+Injected stream     : 5699d0a0
+Expected RX word    : 5699d005 (parity_error=0)
+Actual RX word      : 5699d005 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+Result              : PASS (verification-modeled FIFO overflow)
+                      occupancy_before=0 writes_attempted=7 overflow_events=3 (planned 3)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+============================================================
+REPEATED ERROR BLOCK: base=INVALID_LABEL repeat_count=6 (gap_since_last=0)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 415
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : ea131c03
+Expected word       : ea131c03
+Injected stream     : ea131cc0
+Expected RX word    : ea131c03 (parity_error=0)
+Actual RX word      : ea131c03 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000075 injected_label=03 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 416
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : ec21b2bb
+Expected word       : ec21b2bb
+Injected stream     : ec21b2dd
+Expected RX word    : ec21b2bb (parity_error=0)
+Actual RX word      : ec21b2bb (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000025 injected_label=bb supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 417
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : b8787511
+Expected word       : b8787511
+Injected stream     : b8787588
+Expected RX word    : b8787511 (parity_error=0)
+Actual RX word      : b8787511 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000055 injected_label=11 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 418
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : a26db720
+Expected word       : a26db720
+Injected stream     : a26db704
+Expected RX word    : a26db720 (parity_error=0)
+Actual RX word      : a26db720 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000025 injected_label=20 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 419
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : c613d98c
+Expected word       : c613d98c
+Injected stream     : c613d931
+Expected RX word    : c613d98c (parity_error=0)
+Actual RX word      : c613d98c (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000065 injected_label=8c supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+------------------------------------------------------------
+Transaction ID      : 420
+Seed (snapshot)     : 1
+Fault class         : INVALID_LABEL
+Tag                 : VALID_LABEL(application-defined)
+Original word       : 85e38318
+Expected word       : 85e38318
+Injected stream     : 85e38318
+Expected RX word    : 85e38318 (parity_error=0)
+Actual RX word      : 85e38318 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : PASS (fault observed at verification level)
+                      original_label=00000065 injected_label=18 supported_label_status=INVALID
+                      invalid_label_condition: received label NOT in APPLICATION-DEFINED supported set
+                      DUT accepted the word: NO label validator in RTL - EXPECTED LIMITATION
+                      NOT an ARINC protocol violation claim
+REPEATED BLOCK SUMMARY: REPEATED ERROR PATTERN OBSERVED (analysis classification, NOT hardware detection)
+                        repeat_count=6 consecutive_error_count=14 successes_between=0
+                        underlying_error_type=INVALID_LABEL underlying DUT-detected members=0/6
+                        INVALID_LABEL base: DUT has no label validator, underlying detection impossible (honest 0)
+------------------------------------------------------------
+Transaction ID      : 421
+Fault class         : BUS_IDLE_ERROR
+Idle threshold      : 22000 cycles (PROJECT-DEFINED)
+Result              : PASS (fault observed at verification level)
+                      idle_duration=23302 cycles >= IDLE_THRESHOLD=22000 -> BUS IDLE condition
+                      (466 us with no TX/RX activity)
+                      DUT IDLE DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 422
+Seed (snapshot)     : 1
+Fault class         : FIFO_OVERFLOW
+Tag                 : O_OVERFLOW(verification-modeled)
+Original word       : 0a2cf965
+Expected word       : 0a2cf965
+Injected stream     : 0a2cf9a6
+Expected RX word    : 0a2cf965 (parity_error=0)
+Actual RX word      : 0a2cf965 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] OVERFLOW: write request dropped, occupancy=4 (depth=4)
+Result              : PASS (verification-modeled FIFO overflow)
+                      occupancy_before=0 writes_attempted=5 overflow_events=1 (planned 1)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+------------------------------------------------------------
+Transaction ID      : 423
+Seed (snapshot)     : 1
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Original word       : 550d7045
+Expected word       : 550d7045
+Injected stream     : 00000000
+Expected RX word    : 00000000 (parity_error=1)
+Actual RX word      : 00000000 (parity_error=1)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+------------------------------------------------------------
+Transaction ID      : 423
+Fault class         : COMMUNICATION_TIMEOUT
+Tag                 : TIMEOUT_SILENT_BUS_ARMED_RX
+Timeout threshold   : 22000 cycles [PROJECT-DEFINED]
+Elapsed             : 15751 cycles
+rx_valid seen       : 1
+Result              : PASS (fault observed at verification level)
+                      ARMED RX on SILENT BUS: DUT produced a FALSE RECEPTION (hallucinated zero word) after 15751 cycles
+                      DUT TIMEOUT DETECTOR: ABSENT - EXPECTED LIMITATION (no such RTL hardware)
+------------------------------------------------------------
+Transaction ID      : 424
+Seed (snapshot)     : 1
+Fault class         : FIFO_UNDERFLOW
+Tag                 : _UNDERFLOW(verification-modeled)
+Original word       : 46e3c025
+Expected word       : 46e3c025
+Injected stream     : 46e3c0a4
+Expected RX word    : 46e3c025 (parity_error=0)
+Actual RX word      : 46e3c025 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+  [FIFO-MODEL] UNDERFLOW: read request on empty FIFO
+Result              : PASS (verification-modeled FIFO underflow)
+                      occupancy_before=0 reads_attempted=2 underflow_events=2 (planned 2)
+                      NO FIFO HARDWARE IN RTL - VERIFICATION-MODELED EVENT (expected limitation)
+============================================================
+STAGE 4: reset-during-fault scenarios (RESET RECOVERY class)
+============================================================
+------------------------------------------------------------
+Reset scenario       : RESET_DURING_PARITY_FAULT_TX
+  [WIRE-PROOF] serial bit 12 corrupted on the wire: FIU_in=1 FIU_out=0
+------------------------------------------------------------
+Transaction ID      : 425
+Seed (snapshot)     : 1
+Fault class         : NORMAL
+Tag                 : NORMAL
+Original word       : 6b7fec65
+Expected word       : 6b7fec65
+Injected stream     : 6b7feca6
+Expected RX word    : 6b7fec65 (parity_error=0)
+Actual RX word      : 6b7fec65 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (DUT returned to reset state, no stale events, recovery transaction verified)
+------------------------------------------------------------
+Reset scenario       : RESET_DURING_INCOMPLETE_WORD
+------------------------------------------------------------
+Transaction ID      : 426
+Seed (snapshot)     : 1
+Fault class         : NORMAL
+Tag                 : NORMAL
+Original word       : c764c545
+Expected word       : c764c545
+Injected stream     : c764c5a2
+Expected RX word    : c764c545 (parity_error=0)
+Actual RX word      : c764c545 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (DUT returned to reset state, no stale events, recovery transaction verified)
+------------------------------------------------------------
+Reset scenario       : RESET_DURING_REPEATED_ERROR_SEQ
+Result              : PASS (FAULT DETECTED BY DUT: parity_error=1, word mismatch, serial pos 12 = word bit 12 [DATA])
+  [REPEAT-PROOF] transaction 1 COMPLETED (tx_done + rx_valid + parity_error=1)
+  [REPEAT-PROOF] transaction 2 STARTED after tx_busy==0 (second tx_start genuinely accepted)
+  [WIRE-PROOF] T2 serial bit 5 corrupted on the wire: FIU_in=1 FIU_out=0
+------------------------------------------------------------
+Transaction ID      : 428
+Seed (snapshot)     : 1
+Fault class         : NORMAL
+Tag                 : NORMAL
+Original word       : 764ad175
+Expected word       : 764ad175
+Injected stream     : 764ad1ae
+Expected RX word    : 764ad175 (parity_error=0)
+Actual RX word      : 764ad175 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (DUT returned to reset state, no stale events, recovery transaction verified)
+                      repeated-error context proven: T1 completed + T2 genuinely started, both aborted by reset
+------------------------------------------------------------
+Reset scenario       : RESET_DURING_IDLE
+------------------------------------------------------------
+Transaction ID      : 429
+Seed (snapshot)     : 1
+Fault class         : NORMAL
+Tag                 : NORMAL
+Original word       : da045a75
+Expected word       : da045a75
+Injected stream     : da045aae
+Expected RX word    : da045a75 (parity_error=0)
+Actual RX word      : da045a75 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : NORMAL PASS (normal communication verified)
+Result              : PASS (DUT returned to reset state, no stale events, recovery transaction verified)
+
+============================================================
+PHASE-1 FAULT INJECTION - COUNTER SUMMARY (seed=1 mode=1)
+============================================================
+total_tests                  = 435
+passed_tests                 = 435
+failed_tests                 = 0
+normal_tests                 = 202
+normal_passed                = 202
+normal_failed                = 0
+fault_tests                  = 247
+faults_injected              = 244
+faults_detected              = 112
+faults_undetected            = 0
+expected_limitations         = 132
+faults_unresolved            = 0
+errors_observed              = 244
+------------------------------------------------------------
+parity_faults                = 112
+parity_detected              = 112
+parity_undetected            = 0
+parity_anomalies             = 0
+two_bit_faults               = 2
+two_bit_limitations          = 2
+timeout_faults               = 13
+timeout_observed             = 13
+timeout_unresolved           = 0
+timeout_detected_by_dut      = 0   (no timeout detector in RTL)
+fifo_overflow_events         = 14 (verification-modeled)
+fifo_underflow_events        = 16 (verification-modeled)
+invalid_label_faults         = 83
+repeated_error_cases         = 9
+repeated_error_patterns_observed = 9 (ANALYSIS classification)
+repeated_underlying_dut_detected = 5 (blocks with >=1 DUT-detected member)
+repeated_error_failed        = 0
+bus_idle_cases               = 4
+high_error_rate_cases        = 11
+high_error_rate_windows_classified = 7 (ANALYSIS classification)
+high_error_rate_windows_below      = 4
+high_error_rate_failed       = 0
+------------------------------------------------------------
+bit_faults_by_label          = 27
+bit_faults_by_sdi            = 8
+bit_faults_by_data           = 63
+bit_faults_by_ssm            = 7
+bit_faults_by_parity         = 7
+------------------------------------------------------------
+reset_tests                  = 4
+reset_passed                 = 4
+reset_failed                 = 0
+------------------------------------------------------------
+timing_failures              = 0
+tx_done width failures       = 0
+rx_valid width failures      = 0
+tb_internal_errors           = 0
+consistency_violations       = 0
+dataset_integrity_failures   = 0 (per-row CSV audit)
+FIFO model: write_req=38 read_req=40 final_occ=0
+============================================================
+COUNTER CONSISTENCY: ALL 14 EQUATIONS HOLD
+OVERALL RESULT = PASS
+============================================================
+FAULT-INJECTION FRAMEWORK READY
+(verified by this simulation run; re-run under Vivado XSim
+ with the same seed to reproduce this exact fault sequence)
+============================================================
+/home/z/my-project/download/review2_phase1_fixed/tb/tb_arinc429_fault_injection.v:2642: $finish called at 159444060000 (1ps)

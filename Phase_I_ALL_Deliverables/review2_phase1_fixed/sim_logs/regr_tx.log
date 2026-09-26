@@ -1,0 +1,29 @@
+PASS [RESET]
+PASS [NORMAL] word=02af3505
+PASS [MIXED] word=e48d16a5
+PASS [ALL_ZERO] word=80000000
+PASS [ALL_ONE] word=7fffffff
+PASS [ALTERNATING] word=255555aa
+PASS [BUSY_LATCH]
+PASS [RESET_DURING_TX]
+PASS [POST_RESET_RECOVERY] word=8048d288
+
+============================================================
+ARINC 429 TX VERIFICATION SUMMARY
+============================================================
+Total tests              = 9
+Passed                   = 9
+Failed                   = 0
+Bits sampled             = 96000
+Bit errors               = 0
+Timing failures          = 0
+Gap failures             = 0
+tx_done width failures   = 0
+CYCLES_PER_BIT           = 500
+DATA_CYCLES              = 16000
+GAP_CYCLES               = 2000
+TOTAL_CYCLES             = 18000
+============================================================
+OVERALL RESULT = PASS
+============================================================
+/home/z/my-project/download/review2_phase1_fixed/tb_review1/tb_arinc429_tx_review1_fix.v:474: $finish called at 2620600000 (1ps)

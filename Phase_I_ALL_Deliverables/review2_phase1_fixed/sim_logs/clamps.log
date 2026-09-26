@@ -1,0 +1,107 @@
+NOTE: 6 configuration value(s) were clamped into the legal range (see header).
+============================================================
+ARINC 429 PHASE-1 FAULT INJECTION TESTBENCH (Review-2 rev B)
+============================================================
+USER_SEED                    = 3  (same seed reproduces the identical fault sequence)
+RUN MODE                     = 0  (0=NORMAL, 1=RANDOM, 2=DIRECTED)
+NUM_RANDOM_TESTS             = 60
+FAULT_PROBABILITY            = 80 %
+ERROR_RATE_WINDOW            = 2 transactions
+HIGH_ERROR_RATE_THRESHOLD    = 1 %   [PROJECT-DEFINED]
+TIMEOUT_THRESHOLD            = 18000 cycles (360 us) [PROJECT-DEFINED]
+IDLE_THRESHOLD               = 4000 cycles (80 us) [PROJECT-DEFINED, > normal gap 2000]
+FIFO_DEPTH (verification model) = 64  [NO FIFO IN RTL]
+REPEAT_ERROR_RANGE           = 9..9
+CYCLES_PER_BIT=500 GAP_CYCLES=2000 TOTAL_TX_CYCLES=18000 RX_VALID_DELAY=15751
+CSV dataset file             = arinc429_ml_dataset_seed3.csv (46-column schema)
+DUT files: UNMODIFIED Review-1 RTL; injector: TESTBENCH ONLY
+Detection honesty: REPEATED/HIGH-RATE are ANALYSIS classifications;
+  TIMEOUT/IDLE/FIFO/LABEL are EXPECTED LIMITATIONS (no such RTL hardware).
+============================================================
+Result              : PASS [INITIAL_RESET] outputs clean
+============================================================
+REGRESSION BLOCK: normal traffic, injection disabled (FIU=wire)
+============================================================
+------------------------------------------------------------
+Transaction ID      : 1
+Seed (snapshot)     : 3
+Fault class         : NORMAL
+Tag                 : NORMAL
+Original word       : 62808a05
+Expected word       : 62808a05
+Injected stream     : 62808aa0
+Expected RX word    : 62808a05 (parity_error=0)
+Actual RX word      : 62808a05 (parity_error=0)
+rx_valid=1 tx_done=1  (counters +1 / +1)
+TX duration         : 18000 cycles (360000 ns)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+Result              : NORMAL PASS (normal communication verified)
+
+============================================================
+PHASE-1 FAULT INJECTION - COUNTER SUMMARY (seed=3 mode=0)
+============================================================
+total_tests                  = 5
+passed_tests                 = 5
+failed_tests                 = 0
+normal_tests                 = 4
+normal_passed                = 4
+normal_failed                = 0
+fault_tests                  = 0
+faults_injected              = 0
+faults_detected              = 0
+faults_undetected            = 0
+expected_limitations         = 0
+faults_unresolved            = 0
+errors_observed              = 0
+------------------------------------------------------------
+parity_faults                = 0
+parity_detected              = 0
+parity_undetected            = 0
+parity_anomalies             = 0
+two_bit_faults               = 0
+two_bit_limitations          = 0
+timeout_faults               = 0
+timeout_observed             = 0
+timeout_unresolved           = 0
+timeout_detected_by_dut      = 0   (no timeout detector in RTL)
+fifo_overflow_events         = 0 (verification-modeled)
+fifo_underflow_events        = 0 (verification-modeled)
+invalid_label_faults         = 0
+repeated_error_cases         = 0
+repeated_error_patterns_observed = 0 (ANALYSIS classification)
+repeated_underlying_dut_detected = 0 (blocks with >=1 DUT-detected member)
+repeated_error_failed        = 0
+bus_idle_cases               = 0
+high_error_rate_cases        = 0
+high_error_rate_windows_classified = 0 (ANALYSIS classification)
+high_error_rate_windows_below      = 0
+high_error_rate_failed       = 0
+------------------------------------------------------------
+bit_faults_by_label          = 0
+bit_faults_by_sdi            = 0
+bit_faults_by_data           = 0
+bit_faults_by_ssm            = 0
+bit_faults_by_parity         = 0
+------------------------------------------------------------
+reset_tests                  = 0
+reset_passed                 = 0
+reset_failed                 = 0
+------------------------------------------------------------
+timing_failures              = 0
+tx_done width failures       = 0
+rx_valid width failures      = 0
+tb_internal_errors           = 0
+consistency_violations       = 0
+dataset_integrity_failures   = 0 (per-row CSV audit)
+FIFO model: write_req=0 read_req=0 final_occ=0
+============================================================
+COUNTER CONSISTENCY: ALL 14 EQUATIONS HOLD
+OVERALL RESULT = PASS
+============================================================
+FAULT-INJECTION FRAMEWORK READY
+(verified by this simulation run; re-run under Vivado XSim
+ with the same seed to reproduce this exact fault sequence)
+============================================================
+/home/z/my-project/download/review2_phase1_fixed/tb/tb_arinc429_fault_injection.v:2642: $finish called at 1440540000 (1ps)
